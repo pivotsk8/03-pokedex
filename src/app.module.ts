@@ -11,7 +11,9 @@ import { PokemonModule } from './pokemon/pokemon.module';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public')
     }),
+    //Referencia a la base de datos ver https://docs.nestjs.com/techniques/mongodb
     MongooseModule.forRoot('mongodb://localhost:27017/nest-pokemon'),
+
     PokemonModule
   ],
 })

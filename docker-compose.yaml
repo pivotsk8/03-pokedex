@@ -6,7 +6,7 @@ services:
     restart: always
     ports:
     # Es para que esponga el puerto 27017 y que haga el puente con mi puerto 27017 (puerto de la BD)
-      - 27017:27017
+      - "27017:27017"
     environment:
       MONGODB_DATABASE: nest-pokemon
       # los volumenes es mas o menos como los puertos, pero es para ocupar un espacio en mi disco duro

@@ -15,6 +15,8 @@ import { PokemonController } from './pokemon.controller';
         schema: PokemonSchema,
       }
     ])
-  ]
+  ],
+  //Aqui estoy exportantdo el modulo de mongoose para poder usar el schema en otro modulo
+  exports: [MongooseModule]
 })
 export class PokemonModule { }

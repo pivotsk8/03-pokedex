@@ -44,7 +44,7 @@ export class PokemonService {
 
     //Name 
     if (!pokemon) {
-      pokemon = await this.pokemonModel.findOne({ name: term.toUpperCase().trim() })
+      pokemon = await this.pokemonModel.findOne({ name: term.toLowerCase().trim() })
 
     }
 

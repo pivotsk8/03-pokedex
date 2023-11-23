@@ -4,6 +4,7 @@ import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 import { Pokemon } from './entities-schema/pokemon.entity';
 import { Model, isValidObjectId } from 'mongoose';
+import { PaginationDto } from '../common/dto/pagination.dto';
 
 
 @Injectable()
@@ -26,8 +27,16 @@ export class PokemonService {
     }
   }
 
-  findAll() {
-    return `This action returns all pokemon`;
+  findAll(paginationDto: PaginationDto) {
+    const { limit = 10, offset = 0 } = paginationDto
+
+    //pagination 
+    return this.pokemonModel.find()
+      .limit(limit)
+      //El skip te muestra los pokemons desde elnumero que se indica ej(1,2,3) si pasas en el skip 1 te va a mostrar (2,3,4)
+      .skip(offset)
+      .sort({ no: 1 })
+      .select('-__v')
   }
 
   async findOne(term: string) {

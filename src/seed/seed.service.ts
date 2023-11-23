@@ -2,17 +2,18 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Pokemon } from '../pokemon/entities-schema/pokemon.entity'
 
-import axios, { AxiosInstance } from 'axios';
 import { PokeResponse } from './interface/poke-response.interface';
 import { Model } from 'mongoose';
+import { AxiosAdapte } from 'src/common/adapters/axios.adapter';
+
 
 
 @Injectable()
 export class SeedService {
-  private readonly axios: AxiosInstance = axios
   constructor(
     @InjectModel(Pokemon.name)
     private readonly pokemonModel: Model<Pokemon>,
+    private readonly http: AxiosAdapte
   ) { };
 
   // una de las formas para hace la inserction
@@ -45,8 +46,8 @@ export class SeedService {
     await this.pokemonModel.deleteMany({}); // = delete * from pokemons;
 
     //se creo una interface para tener la data mas clara y poder usar la respuesta teniendo claro su estructura
-    const { data: { results } } = await this.axios.get<PokeResponse>('https://pokeapi.co/api/v2/pokemon?limit=650')
-    
+    const { results } = await this.http.get<PokeResponse>('https://pokeapi.co/api/v2/pokemon?limit=650')
+
     //Esto puede remplazar una interface 
     const pokemonToInsert: { name: string, no: number }[] = []
 

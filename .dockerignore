@@ -1,0 +1,6 @@
+dist/
+node_modules/
+.gitignore
+
+# Es una carpeta oculta que no esnecesario poner el container
+.git/

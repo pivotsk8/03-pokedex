@@ -20,7 +20,7 @@ export class PokemonService {
     private readonly configService: ConfigService
   ) {
     //aqui el <number> no hace ninguna conversion solo sirve para decirle a ts que es un numero
-    this.defaultLimit = configService.get<number>('defaultLimit')
+    this.defaultLimit = this.configService.get<number>('defaultLimit')
   }
 
   async create(createPokemonDto: CreatePokemonDto) {

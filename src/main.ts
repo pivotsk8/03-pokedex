@@ -14,12 +14,16 @@ async function bootstrap() {
       whitelist: true,
       forbidNonWhitelisted: true,
       //Con estas lineas los DTO's se les permite transformar la data segun los parametros que se les pusieron a estos ultimo(@IsString...)
-      transform:true,
+      transform: true,
       transformOptions: {
         enableImplicitConversion: true
       }
     })
   )
-  await app.listen(3000);
+
+  //Aquie en el main le config.env no se toma encuenta este ultimo se tomara encuenta en los modulos a donde se importo,
+  //  en el main no se puede importar
+  await app.listen(process.env.PORT);
+  console.log(`App runnig on port ${process.env.PORT}`)
 }
 bootstrap();

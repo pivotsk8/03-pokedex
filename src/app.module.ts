@@ -25,7 +25,7 @@ import { JoiValidationSchema } from './config/joi.validation';
       rootPath: join(__dirname, '..', 'public')
     }),
     //Referencia a la base de datos ver https://docs.nestjs.com/techniques/mongodb
-    MongooseModule.forRoot(process.env.MONGODB),
+    MongooseModule.forRoot(process.env.MONGODB, { dbName: 'pokemondb' }),
     PokemonModule,
     CommonModule,
     SeedModule
